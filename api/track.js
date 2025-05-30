@@ -18,7 +18,15 @@ export default async function handler(req, res) {
       body: "grant_type=client_credentials",
     });
 
-    const { access_token } = await tokenRes.json();
+    const tokenData = await tokenRes.json();
+
+if (!tokenData.access_token) {
+  console.error("Token Error", tokenData); // <-- logs the actual error
+  return res.status(500).json({ error: "Token fetch failed", detail: tokenData });
+}
+
+const access_token = tokenData.access_token;
+
 
     const trackRes = await fetch(`https://api.spotify.com/v1/tracks/${trackId}`, {
       headers: {
