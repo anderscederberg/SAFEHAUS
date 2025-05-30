@@ -1,6 +1,6 @@
 export default async function handler(req, res) {
   const clientId = "1dc0552f56f542a783ce912a74e9d4d2";
-  const clientSecret = "your-real-spotify-client-secret";
+  const clientSecret = "c6b40922d78a4a96963ade61f7cf836b";
 
   const trackId = req.query.id;
   if (!trackId) {
